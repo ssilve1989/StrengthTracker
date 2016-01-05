@@ -1,0 +1,10 @@
+.exercise-list{
+  > li{
+    width: 100%;
+    padding: 0 3em;
+    margin-bottom: 1em;
+    > .btn {
+      font-size: 1.75em;
+    }
+  }
+}

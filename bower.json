@@ -1,0 +1,30 @@
+{
+  "name": "big-three",
+  "description": "",
+  "main": "index.html",
+  "authors": [
+    "Steve Silvestri <steve.silvestri@digitalreasoning.com>"
+  ],
+  "license": "GPL 3.0",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "www/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-route": "~1.4.8",
+    "angular": "~1.4.8",
+    "animate.css": "~3.5.1",
+    "font-awesome": "~4.5.0",
+    "bootstrap": "~3.3.6",
+    "highcharts": "~4.2.1",
+    "normalize-css": "normalize.css#~3.0.3",
+    "moment": "~2.11.0"
+  }
+}

@@ -1,0 +1,133 @@
+header, h1, h2, h3, h4, p, div, span, ul, ol, article, main, footer, img, nav, figure {
+  margin: 0;
+  padding: 0;
+  border: 0; }
+
+ul, ol {
+  list-style-type: none; }
+
+.btn-pastel-blue {
+  background-color: #079ed2;
+  color: #fff; }
+
+.btn-pastel-dark-blue {
+  background-color: #779ECB;
+  color: #fff; }
+
+.navbar {
+  border: 0; }
+
+.navbar-nav {
+  margin: 0 -15px; }
+
+.navbar-toggle {
+  float: left;
+  margin: 1em; }
+
+.navbar-inverse {
+  color: #fff;
+  margin: 0; }
+
+.nav > li {
+  padding: 1em;
+  border-bottom: 1px solid white; }
+  .nav > li:active {
+    background-color: #333; }
+  .nav > li:last-child {
+    border: 0; }
+
+#header {
+  position: relative; }
+  #header h1 {
+    margin: 1rem;
+    font-size: 2.5em; }
+
+#main-nav {
+  position: absolute;
+  background-color: #222;
+  width: 70%;
+  height: 100vh;
+  left: -70%;
+  -webkit-transition: left 750ms;
+  -moz-transition: left 750ms;
+  -ms-transition: left 750ms;
+  -o-transition: left 750ms;
+  transition: left 750ms; }
+
+/*
+.navbar-trigger{
+  position: relative;
+  padding: 9px 10px;
+  margin-top: 8px;
+  margin-right: 15px;
+  margin-bottom: 8px;
+  background: transparent none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+
+  &.navbar-trigger-left{
+    float: left;
+  }
+
+  &.navbar-trigger-right{
+    float: right;
+  }
+
+  .icon-bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    border-radius: 1px;
+    background-color: $white;
+    & + .icon-bar{
+      margin-bottom: 4px;
+    }
+  }
+}
+*/
+.exercise-list > li {
+  width: 100%;
+  padding: 0 3em;
+  margin-bottom: 1em; }
+  .exercise-list > li > .btn {
+    font-size: 1.75em; }
+
+.chart-section {
+  margin-bottom: 1em; }
+  .chart-section h1, .chart-section h2, .chart-section h3, .chart-section h4, .chart-section h5, .chart-section h6 {
+    margin-bottom: 1em; }
+
+body {
+  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px; }
+  body.mm-open {
+    overflow-x: hidden; }
+    body.mm-open #main-nav {
+      left: 15px; }
+    body.mm-open #main {
+      left: 70%; }
+
+#main {
+  margin-top: 1em;
+  position: relative;
+  left: 0;
+  -webkit-transition: left 750ms;
+  -moz-transition: left 750ms;
+  -ms-transition: left 750ms;
+  -o-transition: left 750ms;
+  transition: left 750ms; }
+  #main h1 {
+    border-bottom: 1px solid #ddd; }
+  #main h1, #main h2, #main h3 {
+    padding-bottom: .5em;
+    margin-bottom: .5em;
+    text-align: center; }
+
+#settings .option > .btn {
+  display: block;
+  margin-bottom: .25em; }
+
+.alert {
+  margin: 1em; }
+
+/*# sourceMappingURL=main.css.map */
