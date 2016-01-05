@@ -1,0 +1,23 @@
+<section class="row text-center">
+    <div class="col-md-12">
+        <h1>History</h1>
+        <p><em><small>(1RM estimated using Brzycki Formula)</small></em></p>
+        <section class="chart-section">
+            <h2>Bench Press</h2>
+            <div id="benchchart"></div>
+            <div class="no-data-err" ng-if="benchMessage">{{benchMessage}}</div>
+        </section>
+
+        <section class="chart-section">
+            <h2>Squat</h2>
+            <div id="squatchart"></div>
+            <div class="no-data-err" ng-if="squatMessage">{{squatMessage}}</div>
+        </section>
+
+        <section class="chart-section">
+            <h2>Deadlift</h2>
+            <div id="deadliftchart"></div>
+            <div class="no-data-err" ng-if="deadliftMessage">{{deadliftMessage}}</div>
+        </section>
+    </div>
+</section>
