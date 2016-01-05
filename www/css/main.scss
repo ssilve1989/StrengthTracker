@@ -20,11 +20,14 @@ body{
     }
     #main{
       left: 70%;
+      position: fixed;
+      overflow: hidden;
     }
   }
 }
 
 #main{
+  width: 100vw;
   margin-top: 1em;
   position: relative;
   left: 0;
