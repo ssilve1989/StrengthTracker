@@ -3,7 +3,7 @@
  */
 var angularApp = (function(angular){
     "use strict";
-    var angularApp = angular.module('StrengthTracker', ['ngRoute', 'StorageService']);
+    var angularApp = angular.module('StrengthTracker', ['ngRoute', 'ngAnimate','StorageService']);
 
     angularApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
         $routeProvider

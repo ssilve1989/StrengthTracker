@@ -31,7 +31,79 @@
         })();
     </script>
 </head>
-<body ng-cloak>
+<body>
+
+    <!-- splash loading screen -->
+    <div class="m-app-loading animated" ng-animate-children>
+        <!-- using style blocks so that it is removed when the splash is removed -->
+        <style>
+            .m-app-loading {
+                position: fixed;
+                z-index: 9999;
+            }
+
+            .m-app-loading > .animated-container{
+                background-color: #333333;
+                bottom: 0;
+                left: 0;
+                opacity: 1.0;
+                position: fixed;
+                right: 0;
+                top: 0;
+            }
+
+            /*Used to initialize the ng-leave animation state
+            .m-app-loading > .animated-container.ng-leave {
+                opacity: 1.0;
+                -webkit-transition: all linear 200ms;
+                -moz-transition: all linear 200ms;
+                -ms-transition: all linear 200ms;
+                -o-transition: all linear 200ms;
+                transition: all linear 200ms;
+            }
+
+            /*Used to set the end properties of the ng-leave animation state
+            .m-app-loading > .animated-container.ng-leave-active{
+                opacity: 0;
+            }
+            */
+
+            .m-app-loading .messaging {
+                color: #FFFFFF ;
+                font-family: monospace ;
+                left: 0 ;
+                margin-top: -37px ;
+                position: absolute ;
+                right: 0 ;
+                text-align: center ;
+                top: 50% ;
+            }
+
+            .m-app-loading h1 {
+                font-size: 26px;
+                line-height: 35px ;
+                margin: 0 0 20px 0;
+            }
+
+            .m-app-loading p {
+                font-size: 18px ;
+                line-height: 14px ;
+                margin: 0px 0px 0px 0px ;
+            }
+        </style>
+
+        <!-- animated container -->
+        <div class="animated-container">
+            <div class="messaging">
+                <h1>Strength Tracker</h1>
+
+                <p><em>Loading...</em></p>
+            </div>
+        </div>
+        <!--end animated container -->
+    </div>
+    <!--end splash loading screen -->
+
     <header id="header">
         <div class="navbar navbar-inverse">
             <div class="container-fluid">
@@ -74,6 +146,7 @@
     <script src="./bower_components/moment/min/moment.min.js"></script>
     <script src="./bower_components/angular/angular.min.js"></script>
     <script src="./bower_components/angular-route/angular-route.min.js"></script>
+    <script src="./bower_components/angular-animate/angular-animate.min.js"></script>
     <script src="./bower_components/highcharts/highcharts.js"></script>
     <!--endbuild-->
 
@@ -83,6 +156,7 @@
     <script src="./js/controllers/history.js"></script>
     <script src="./js/controllers/settings.js"></script>
     <script src="./js/services/storageService.js"></script>
+    <script src="./js/directives/ng-animate-children.js"></script>
     <!--endbuild-->
 
     <!--Bootstrap angularJS on deviceready-->
