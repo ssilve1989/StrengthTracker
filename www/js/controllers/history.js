@@ -8,75 +8,71 @@
         $scope.db = Storage.getConnection();
         $scope.benchData = [], $scope.squatData = [], $scope.deadliftData = [];
 
-        (function(){
+        $scope.generateChartData = function(weights, dates){
+            "use strict";
+            return {
+                title: {
+                    text : '',
+                    x: -20 //center
+                },
+                xAxis: {
+                    categories : dates,
+                    title : {
+                        text : 'Date'
+                    }
+                },
+                yAxis : {
+                    title : {
+                        text : 'Weight'
+                    }
+                },
+                series : [{
+                    name : 'Weight',
+                    data : weights
+                }]
+            }
+        };
+
+        $scope.populateCharts = function(table, message, chartElement){
             var db = $scope.db;
-
-            //Bench Press Chart Creation
             db.transaction(function(tx){
-                tx.executeSql('SELECT reps, weight, recorded from bench ORDER BY recorded ASC', [], function(tx, results){
+                var statement = 'SELECT reps, weight, recorded from ' + table + ' ORDER BY recorded ASC';
+                tx.executeSql(statement, [], function(tx, results){
                     var length = results.rows.length;
-                    $log.debug('Retrieved ' + length + ' results for query.');
+                    $log.debug('Retrieved ' + length + ' results for query');
 
                     var maxes = [], dates = [];
 
                     for(var i = 0; i < length; i++){
-                        maxes.push(brzycki(results.rows.item(i).weight, results.rows.item(i).reps));
-                        dates.push(moment(results.rows.item(i).recorded).format("MM/DD/YY"));
+                        var weight = results.rows.item(i).weight;
+                        var reps = results.rows.item(i).reps;
+                        var date = results.rows.item(i).recorded;
+
+                        maxes.push(brzycki(weight, reps));
+                        dates.push(moment(date).format('MM/DD/YY'));
                     }
 
-                    if(!maxes.length || !dates.length){
-                        $scope.benchMessage = 'No data found for Bench Press. Go enter some!'
+                    if(!maxes || !dates){
+                        message = 'No data found for lift. Go enter some!'
                     }else{
-                        $("#benchchart").highcharts(generateChartData('Bench Press Statistics', maxes, dates));
+                        if(!chartElement instanceof jQuery){
+                            chartElement = angular.element(chartElement);
+                        }
+                        chartElement.highcharts($scope.generateChartData(maxes, dates));
                     }
                 });
             });
+        };
 
-            //Squat Chart Creation
-            db.transaction(function(tx){
-                tx.executeSql('SELECT reps,weight,recorded from squat ORDER BY recorded ASC', [], function(tx, results){
-                    var length = results.rows.length;
-                    $log.debug('Retrieved ' + length + ' results for query.');
-
-                    var maxes = [], dates = [];
-
-                    for(var i = 0; i < length; i++){
-                        maxes.push(brzycki(results.rows.item(i).weight, results.rows.item(i).reps));
-                        dates.push(moment(results.rows.item(i).recorded).format("MM/DD/YY"));
-                    }
-
-                    if(!maxes.length || !dates.length){
-                        $scope.squatMessage = 'No data found for Squat. Go enter some!'
-                    }else{
-                        $("#squatchart").highcharts(generateChartData('Squat Statistics', maxes, dates));
-                    }
-                });
-            });
-
-            db.transaction(function(tx){
-                tx.executeSql('SELECT reps,weight, recorded from deadlift ORDER BY recorded ASC', [], function(tx, results){
-                    var length = results.rows.length;
-                    $log.debug('Retrieved ' + length + ' results for query.');
-
-                    var maxes = [], dates = [];
-
-                    for(var i = 0; i < length; i++){
-                        maxes.push(brzycki(results.rows.item(i).weight, results.rows.item(i).reps));
-                        dates.push(moment(results.rows.item(i).recorded).format("MM/DD/YY"));
-                    }
-
-                    if(!maxes.length || !dates.length){
-                        $scope.deadliftMessage = 'No data found for Deadlift. Go enter some!'
-                    }else{
-                        $("#deadlifitchart").highcharts(generateChartData('Deadlift Statistics', maxes, dates));
-                    }
-                });
-            });
-        })();
+        $scope.$on('$routeChangeSuccess', function(){
+            $scope.populateCharts('bench', $scope.benchMessage, angular.element('#benchchart'));
+            $scope.populateCharts('squat', $scope.squatMessage, angular.element('#squatchart'));
+            $scope.populateCharts('deadlift', $scope.deadliftMessage, angular.element('#deadliftchart'));
+        });
     }]);
 })(window.angularApp);
 
-function generateChartData(title, weights, dates){
+function generateChartData(weights, dates){
     "use strict";
     return {
         title: {
