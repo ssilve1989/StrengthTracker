@@ -1,7 +1,7 @@
 /**
  * Created by ssilvestri on 12/23/15.
  */
-var StorageService = (function(app){
+var StorageService = (function(){
     "use strict";
 
     var StorageService = angular.module('StorageService', []);
@@ -49,4 +49,4 @@ var StorageService = (function(app){
         return Storage;
     }]);
 
-})(window.angularApp);
+})();

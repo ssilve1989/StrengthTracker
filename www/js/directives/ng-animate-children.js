@@ -14,7 +14,7 @@
             $timeout(function(){
                 element.addClass('fadeOut');
                 $timeout(function(){
-                    element.remove()
+                    element.remove();
                     scope = element = attributes = null;
                 }, 1000);
             }, 2000);
