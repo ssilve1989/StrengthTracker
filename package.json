@@ -8,7 +8,9 @@
   },
   "author": "",
   "license": "MIT",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
+    "gulp-uglify-inline": "^0.1.1",
     "del": "^2.2.0",
     "gulp": "^3.9.0",
     "gulp-minify-css": "^1.2.3",

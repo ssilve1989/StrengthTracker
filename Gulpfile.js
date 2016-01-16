@@ -5,9 +5,8 @@
 var gulp = require('gulp');
 
 var config = {
-    src : './www/',
-    ANDROID_HOME : "./platforms/android/assets/www/",
-    BROWSER_HOME : "./platforms/browser/www/"
+    src : './dev/',
+    dest : './www/'
 };
 
 //Gulp Modules
@@ -15,6 +14,7 @@ var usemin = require('gulp-usemin');
 var sass = require('gulp-sass');
 var clean = require('del');
 var uglify = require('gulp-uglify');
+var uglifyInline = require('gulp-uglify-inline');
 var minifyHTML = require('gulp-minify-html');
 var minifyCSS = require('gulp-minify-css');
 var rev = require('gulp-rev');
@@ -23,7 +23,7 @@ var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('clean', function(){
     "use strict";
-    clean([config.ANDROID_HOME, config.ANDROID_HOME]);
+    clean([config.dest]);
 });
 
 gulp.task('sass', function(){
@@ -31,7 +31,7 @@ gulp.task('sass', function(){
         .pipe(sourcemaps.init())
         .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(config.ANDROID_HOME + 'css'))
+        .pipe(gulp.dest(config.dest + 'css'))
 });
 
 gulp.task('minify', function(){
@@ -41,13 +41,13 @@ gulp.task('minify', function(){
             js : [uglify(), rev()],
             js2 : [uglify(), rev()],
             html : [minifyHTML({empty:true})],
-            inlinejs : [uglify()],
-            inlinecss : [minifyCSS(), 'concat']
-        })).pipe(gulp.dest(config.ANDROID_HOME));
+        })).pipe(gulp.dest(config.dest));
 });
 
 gulp.task('copy', function(){
-    return gulp.src(config.src + 'js/index.js').pipe(gulp.dest(config.ANDROID_HOME + 'js'))
+    gulp.src(config.src + "views/*").pipe(gulp.dest(config.dest + "views"));
+    return gulp.src(config.src + 'js/index.js')
+        .pipe(gulp.dest(config.dest + 'js'))
 });
 
 gulp.task('build', ['copy', 'sass', 'minify']);
