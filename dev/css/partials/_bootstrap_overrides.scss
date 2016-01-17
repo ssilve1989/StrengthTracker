@@ -1,0 +1,44 @@
+.table{
+  > thead{
+    > tr {
+      > td {
+        font-weight: bold;
+      }
+    }
+  }
+  > tbody {
+    > tr {
+      > td {
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+.navbar{
+  border: 0;
+}
+.navbar-nav{
+  margin: 0 -15px;
+}
+.navbar-toggle{
+  float: left;
+  margin: 1em;
+}
+.navbar-inverse{
+  color: $white;
+  margin: 0;
+}
+
+.nav{
+  > li{
+    padding: 1em;
+    border-bottom: 1px solid white;
+    &:active{
+      background-color: $light-black;
+    }
+    &:last-child{
+      border: 0;
+    }
+  }
+}

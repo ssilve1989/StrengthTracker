@@ -1,6 +1,6 @@
 <section class="row text-center">
     <div class="col-md-12">
-        <h1>{{exercise ? exercise : 'Select Exercise'}}</h1>
+        <h2 class="title">{{exercise ? exercise : 'Select Exercise'}}</h2>
 
         <section ng-hide="exercise" ng-class="{ 'animated {{animationClass}}' : !exercise }">
             <h3 ng-show="message">{{message}}</h3>

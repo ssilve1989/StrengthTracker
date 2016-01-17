@@ -3,7 +3,7 @@
  */
 var angularApp = (function(angular){
     "use strict";
-    var angularApp = angular.module('StrengthTracker', ['ngRoute', 'ngAnimate','StorageService']);
+    var angularApp = angular.module('StrengthTracker', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'StorageService']);
 
     angularApp.config(['$routeProvider', '$locationProvider', function($routeProvider){
         $routeProvider
@@ -21,6 +21,10 @@ var angularApp = (function(angular){
             })
             .when('/about', {
                 templateUrl : 'views/about.html'
+            })
+            .when('/edit', {
+                templateUrl : 'views/edit.html',
+                controller : 'editCtrl'
             })
             .otherwise({
                 redirectTo: '/'
@@ -62,6 +66,16 @@ function brzycki(weight, reps){
         throw "Reps must be 1 or greater to calculate 1RM"
     }
     return Math.round(weight * (36 / (37-reps)))
+}
+
+function isNumber(n){
+    var isNumber;
+    try{
+        isNumber = !isNaN(n);
+    }catch(e){
+        return false;
+    }
+    return isNumber;
 }
 
 console.debug('app.js loaded.');

@@ -10,15 +10,20 @@ var StorageService = (function(){
         var Storage = {};
         Storage.db = null;
 
-        Storage.setupDatabase = function(database){
-            this.db = openDatabase(database, '1.0', 'Test DB', 2 * 1024 * 1024);
+        Storage.setupDatabase = function(){
+            this.db = this.getConnection();
 
             this.db.transaction(function(tx){
-                tx.executeSql('CREATE TABLE IF NOT EXISTS bench (recorded long, reps, weight)');
-                tx.executeSql('CREATE TABLE IF NOT EXISTS squat (recorded long, reps, weight)');
-                tx.executeSql('CREATE TABLE IF NOT EXISTS deadlift (recorded long, reps, weight)');
+                tx.executeSql('CREATE TABLE IF NOT EXISTS bench (id INTEGER PRIMARY KEY, recorded long, reps, weight)');
+                tx.executeSql('CREATE TABLE IF NOT EXISTS squat (id INTEGER PRIMARY KEY, recorded long, reps, weight)');
+                tx.executeSql('CREATE TABLE IF NOT EXISTS deadlift (id INTEGER PRIMARY KEY, recorded long, reps, weight)');
             });
         };
+
+        Storage.checkDatabase = function(){
+            return !!this.db;
+        };
+
 
         Storage.addExercise = function(table, obj){
             if(!this.db){
@@ -43,6 +48,9 @@ var StorageService = (function(){
 
         //For executing custom queries
         Storage.getConnection = function(){
+            if(!this.db){
+                this.db = openDatabase('strengthTracker', '1.0', 'Test DB', 2 * 1024 * 1024);
+            }
             return this.db;
         };
 

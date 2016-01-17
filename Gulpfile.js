@@ -10,16 +10,23 @@ var config = {
 };
 
 //Gulp Modules
+var connect = require('gulp-connect');
 var usemin = require('gulp-usemin');
 var sass = require('gulp-sass');
 var clean = require('del');
 var uglify = require('gulp-uglify');
-var uglifyInline = require('gulp-uglify-inline');
 var minifyHTML = require('gulp-minify-html');
 var minifyCSS = require('gulp-minify-css');
 var rev = require('gulp-rev');
 var sourcemaps = require('gulp-sourcemaps');
 
+gulp.task('connect', function(){
+    "use strict";
+    connect.server({
+        port: 8080,
+        root: './dev'
+    });
+});
 
 gulp.task('clean', function(){
     "use strict";
@@ -46,6 +53,7 @@ gulp.task('minify', function(){
 
 gulp.task('copy', function(){
     gulp.src(config.src + "views/*").pipe(gulp.dest(config.dest + "views"));
+    gulp.src(config.src + 'bower_components/font-awesome/fonts/**/*').pipe(gulp.dest(config.dest + 'fonts/'));
     return gulp.src(config.src + 'js/index.js')
         .pipe(gulp.dest(config.dest + 'js'))
 });
