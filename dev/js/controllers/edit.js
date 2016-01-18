@@ -5,7 +5,7 @@
 (function(app){
     "use strict";
 
-    app.controller('editCtrl', ['$scope', '$uibModal', 'Storage', function($scope, $uibModal, Storage){
+    app.controller('editCtrl', ['$scope', '$uibModal', '$log', 'Storage', function($scope, $uibModal, $log, Storage){
         $scope.rows = [];
         $scope.itemsPerPage = 10;
         $scope.currentPage = 1;
@@ -46,7 +46,7 @@
                     }
                     $scope.$apply();
                 }, function(tx, err){
-                    console.error(err);
+                    $log.error(err);
                 });
             })
         };
@@ -64,21 +64,19 @@
                         $scope.$apply();
                     }
                 }, function(tx, error){
-                    console.error(error);
+                    $log.error(error);
                 });
             });
         }
 
     }]);
 
-    app.controller('ModalInstanceCtrl', ['$rootScope', '$scope', 'item', '$uibModalInstance', 'Storage', function($rootScope, $scope, item, $uibModalInstance, Storage){
+    app.controller('ModalInstanceCtrl', ['$scope', '$log', 'item', '$uibModalInstance', 'Storage', function($scope, $log, item, $uibModalInstance, Storage){
         $scope.db = Storage.getConnection();
 
         if(!$scope.db){
             $scope.error = 'The database could not be reached. Please try again later.'
         }
-
-        console.log(item);
 
         $scope.selected = item;
         $scope.reps = item.reps;
@@ -90,7 +88,7 @@
 
         $scope.update = function(form, table){
 
-            if(form.reps.$error.length > 0 || form.weight.$error.length > 0) return;
+            if(form.reps.$invalid || form.weight.$invalid > 0) return;
 
             var id = $scope.selected.id;
             var reps = $scope.selected.reps = form.reps.$modelValue;
@@ -106,7 +104,7 @@
                         $uibModalInstance.close();
                     }
                 }, function(tx, error){
-                    console.error(error);
+                    $log.error(error);
                 });
             });
         };

@@ -5,7 +5,7 @@ var angularApp = (function(angular){
     "use strict";
     var angularApp = angular.module('StrengthTracker', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'StorageService']);
 
-    angularApp.config(['$routeProvider', '$locationProvider', function($routeProvider){
+    angularApp.config(['$routeProvider', '$logProvider', function($routeProvider, $logProvider){
         $routeProvider
             .when('/', {
                 templateUrl: 'views/main.html',
@@ -29,6 +29,8 @@ var angularApp = (function(angular){
             .otherwise({
                 redirectTo: '/'
             });
+
+        $logProvider.debugEnabled(false);
     }]);
 
     return angularApp;
