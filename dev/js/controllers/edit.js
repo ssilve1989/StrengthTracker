@@ -7,6 +7,8 @@
 
     app.controller('editCtrl', ['$scope', '$uibModal', 'Storage', function($scope, $uibModal, Storage){
         $scope.rows = [];
+        $scope.itemsPerPage = 10;
+        $scope.currentPage = 1;
         $scope.db = Storage.getConnection();
 
         $scope.edit = function(item){

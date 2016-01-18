@@ -41,7 +41,7 @@ ul, ol {
   .nav > li:last-child {
     border: 0; }
 
-.ng-invalid, .ng-invalid-required {
+.ng-touched.ng-invalid, .ng-touched.ng-invalid-required {
   border-color: red; }
 
 #header {
@@ -118,6 +118,8 @@ body {
 #edit-history .data h1 {
   border: 0;
   padding-top: .5em;
+  text-transform: capitalize; }
+#edit-history .data h3 {
   text-transform: capitalize; }
 
 /***************

@@ -19,17 +19,23 @@
 
         <section ng-show="exercise" ng-class="{ 'animated lightSpeedIn' : exercise }">
             <h3>Enter your best set!</h3>
-            <form ng-submit="saveExercise()">
+            <form name="form" ng-submit="saveExercise()" novalidate>
                 <div class="form-group">
                     <label for="reps">Reps</label>
-                    <input type="number" name="reps" id="reps" ng-model="reps" class="form-control">
+                    <input type="number" name="reps" id="reps" ng-model="reps" class="form-control" min="1" pattern="[0-9]+" ng-required="true" placeholder="Reps">
                 </div>
                 <div class="form-group">
                     <label for="weight">Weight</label>
-                    <input type="number" name="weight" id="weight" ng-model="weight" class="form-control">
+                    <input type="number" name="weight" id="weight" ng-model="weight" class="form-control" min="1" pattern="[0-9\.?]+" ng-required="true" placeholder="Weight">
+                </div>
+                <div class="alert alert-danger" ng-show="(form.reps.$dirty || form.reps.$touched) && form.reps.$invalid">
+                    <strong>Error! </strong>Reps must be a positive whole number.
+                </div>
+                <div class="alert alert-danger" ng-show="(form.weight.$dirty || form.weight.$touched) && form.weight.$invalid">
+                    <strong>Error! </strong>Weight must be a positive number.
                 </div>
                 <input type="submit" class="btn btn-success" value="Save">
-                <button class="btn btn-default" ng-click="reset()">Cancel</button>
+                <button class="btn btn-default" ng-click="cancel()">Cancel</button>
             </form>
         </section>
     </div>
