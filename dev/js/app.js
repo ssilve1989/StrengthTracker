@@ -26,6 +26,10 @@ var angularApp = (function(angular){
                 templateUrl : 'views/edit.html',
                 controller : 'editCtrl'
             })
+            .when('/test', {
+	            templateUrl : 'views/_main.html',
+	            controller : 'GoalCtrl'
+            })
             .otherwise({
                 redirectTo: '/'
             });

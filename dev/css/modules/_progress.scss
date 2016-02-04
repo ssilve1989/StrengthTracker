@@ -1,0 +1,14 @@
+$container-padding: 15px;
+$min-viewport-supported: 320px;
+
+.progress-canvas-container {
+	position: relative;
+	max-width: 768px;
+	min-width: ($min-viewport-supported - ($container-padding * 2));
+
+	> canvas, > .progress-canvas {
+		width: 100%;
+		height: auto;
+		z-index: 0;
+	}
+}
