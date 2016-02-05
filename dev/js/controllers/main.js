@@ -5,7 +5,7 @@
         $scope.exercise = null;
         $scope.animationClass = 'lightSpeedIn';
 
-        Storage.setupDatabase(true);
+        Storage.setupDatabase();
 
         $scope.setExercise = function(exercise){
             $scope.exercise = exercise;
