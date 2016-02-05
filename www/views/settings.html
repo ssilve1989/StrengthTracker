@@ -1,0 +1,23 @@
+<section id="settings" class="row">
+    <div class="col-md-12">
+        <h2 class="title">Settings</h2>
+
+        <div class="option">
+            <button class="btn btn-danger" ng-click="clearDatabase()">Clear Data</button>
+            <p><em>Warning! This will erase all data</em></p>
+            <div ng-if="message" class="alert alert-success">
+                {{message}}
+            </div>
+        </div>
+        <!--
+        <div class="option">
+            <p>Visit Developer Sites</p>
+            <ul class="">
+                <li class="">
+                    <a href="" class="btn btn-facebook" target="_blank">Facebook</a>
+                </li>
+            </ul>
+        </div>
+        -->
+    </div>
+</section>
