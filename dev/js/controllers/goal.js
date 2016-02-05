@@ -86,10 +86,14 @@
 
 	// Drawing functions
 	function setupCanvas(lift) {
-		console.log('Setting up canvas with:', lift);
 		var canvas = document.getElementById(lift.canvas);
 		var ctx = canvas.getContext('2d');
-		var max = Math.round( (lift.current / lift.goal) * 100 );
+		var max;
+		if(lift.goal == 0){
+			max = 0;
+		}else {
+			max = Math.round( (lift.current / lift.goal) * 100 );
+		}
 
 		if(isNaN(max)) max = 0;
 

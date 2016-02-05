@@ -21,7 +21,6 @@ var rev = require('gulp-rev');
 var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('connect', function(){
-    "use strict";
     connect.server({
         port: 8080,
         root: './dev'
@@ -29,7 +28,6 @@ gulp.task('connect', function(){
 });
 
 gulp.task('clean', function(){
-    "use strict";
     clean([config.dest]);
 });
 
@@ -59,5 +57,3 @@ gulp.task('copy', function(){
 });
 
 gulp.task('build', ['copy', 'sass', 'minify']);
-
-

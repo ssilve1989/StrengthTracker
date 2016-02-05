@@ -17,7 +17,7 @@
 
                     <!-- gaol actions -->
                     <div class="goal-actions">
-                        <button ng-hide="lift.updating && lift.current != 0" class="btn btn-pastel-blue btn-block" ng-click="lift.updating = true">
+                        <button ng-hide="lift.updating" class="btn btn-pastel-blue btn-block" ng-click="lift.updating = true">
                             {{ lift.goal == 0 ? 'Set Goal' : 'Update Goal' }}
                         </button>
                         <div ng-show="lift.updating">
@@ -26,7 +26,7 @@
                                     <input name="goal" ng-model="temp" type="number" class="form-control" min="1" placeholder="Goal"
                                            pattern="^[0-9]+$" value="{{ lift.goal }}" required >
                                     <div class="alert alert-danger" ng-show="(form.goal.$dirty || form.goal.$touched) && form.goal.$invalid">
-                                        <strong>Error!: </strong>Must be a positive whole number
+                                        <strong>Error! </strong>Must be a positive whole number
                                     </div>
                                 </div>
                                 <input type="submit" class="btn btn-pastel-blue" value="Set Goal">

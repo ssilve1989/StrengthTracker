@@ -160,11 +160,17 @@
                 console.log("Running in Cordova, will bootstrap AngularJS once 'deviceready' event fires.");
                 document.addEventListener('deviceready', function () {
                     console.log("Deviceready event has fired, bootstrapping AngularJS.");
-                    angular.bootstrap(body, ['StrengthTracker']);
+                    angular.bootstrap(body, ['StrengthTracker']).invoke(['Storage', function(Storage){
+                        // initialize the DB
+                        Storage.setupDatabase();
+                    }]);
                 }, false);
             } else {
                 console.log("Running in browser, bootstrapping AngularJS now.");
-                angular.bootstrap(body, ['StrengthTracker']);
+                angular.bootstrap(body, ['StrengthTracker']).invoke(['Storage', function(Storage){
+                    // initialize the DB
+                    Storage.setupDatabase();
+                }]);
             }
         });
     </script>
