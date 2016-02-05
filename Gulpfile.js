@@ -5,12 +5,12 @@
 var gulp = require('gulp');
 
 var config = {
-    src : './www/',
-    ANDROID_HOME : "./platforms/android/assets/www/",
-    BROWSER_HOME : "./platforms/browser/www/"
+    src : './dev/',
+    dest : './www/'
 };
 
 //Gulp Modules
+var connect = require('gulp-connect');
 var usemin = require('gulp-usemin');
 var sass = require('gulp-sass');
 var clean = require('del');
@@ -20,10 +20,15 @@ var minifyCSS = require('gulp-minify-css');
 var rev = require('gulp-rev');
 var sourcemaps = require('gulp-sourcemaps');
 
+gulp.task('connect', function(){
+    connect.server({
+        port: 8080,
+        root: './dev'
+    });
+});
 
 gulp.task('clean', function(){
-    "use strict";
-    clean([config.ANDROID_HOME, config.ANDROID_HOME]);
+    clean([config.dest]);
 });
 
 gulp.task('sass', function(){
@@ -31,7 +36,7 @@ gulp.task('sass', function(){
         .pipe(sourcemaps.init())
         .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(config.ANDROID_HOME + 'css'))
+        .pipe(gulp.dest(config.dest + 'css'))
 });
 
 gulp.task('minify', function(){
@@ -40,16 +45,16 @@ gulp.task('minify', function(){
             css : [minifyCSS(), 'concat', rev()],
             js : [uglify(), rev()],
             js2 : [uglify(), rev()],
-            html : [minifyHTML({empty:true})],
-            inlinejs : [uglify()],
-            inlinecss : [minifyCSS(), 'concat']
-        })).pipe(gulp.dest(config.ANDROID_HOME));
+            html : [minifyHTML({empty:true})]
+        })).pipe(gulp.dest(config.dest));
 });
 
 gulp.task('copy', function(){
-    return gulp.src(config.src + 'js/index.js').pipe(gulp.dest(config.ANDROID_HOME + 'js'))
+    gulp.src(config.src + "views/*").pipe(gulp.dest(config.dest + "views"));
+    gulp.src(config.src + 'bower_components/font-awesome/fonts/**/*').pipe(gulp.dest(config.dest + 'fonts/'));
+    gulp.src(config.src + 'img/**/*').pipe(gulp.dest(config.dest + 'img/'));
+    return gulp.src(config.src + 'js/index.js')
+        .pipe(gulp.dest(config.dest + 'js'))
 });
 
 gulp.task('build', ['copy', 'sass', 'minify']);
-
-

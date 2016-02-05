@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ssilve1989.bigthree" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="io.ssilve1989.bigthree" version="0.3.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Strength Tracker</name>
     <description>
         A simple stat tracker for the Big Three lifts.
@@ -18,9 +18,19 @@
     <allow-intent href="geo:*" />
     <platform name="android">
         <allow-intent href="market:*" />
+        <icon src="res/mipmap-hdpi/ic_launcher.png" density="hdpi"/>
+        <icon src="res/mipmap-mdpi/ic_launcher.png" density="mdpi"/>
+        <icon src="res/mipmap-xhdpi/ic_launcher.png" density="xhdpi"/>
+        <splash src="res/mipmap-mdpi/ic_launcher.png" density="port-mdpi"/>
+        <splash src="res/mipmap-hdpi/ic_launcher.png" density="port-hdpi" />
+        <splash src="res/mipmap-xhdpi/ic_launcher.png" density="port-xhdpi" />
+        <splash src="res/mipmap-xxhdpi/ic_launcher.png" density="port-xxhdpi" />
+        <splash src="res/mipmap-xxxhdpi/ic_launcher.png" density="port-xxxhdpi" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
+    <preference name="SplashScreen" value="screen"/>
+    <preference name="SplashScreenDelay" value="3000" />
 </widget>

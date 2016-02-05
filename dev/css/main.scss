@@ -1,0 +1,131 @@
+//Partials
+@import 'partials/reset';
+@import 'partials/colors';
+@import 'partials/buttons';
+@import 'partials/bootstrap_overrides';
+@import 'partials/ng_styles';
+@import "partials/form-validation";
+//Modules
+@import 'modules/header';
+@import 'modules/exercises';
+@import 'modules/charts';
+@import 'modules/progress';
+
+
+body{
+  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+
+  //Slide Menu Open
+  &.mm-open{
+    overflow-x: hidden;
+
+    #main-nav{
+        left: 15px;
+    }
+    #main{
+      left: 70%;
+      position: fixed;
+      overflow: hidden;
+    }
+  }
+}
+
+/**************
+    Main
+***************/
+#main{
+  width: 100vw;
+  margin: 1em 0;
+  position: relative;
+  left: 0;
+  -webkit-transition: left 750ms;
+  -moz-transition: left 750ms;
+  -o-transition: left 750ms;
+  transition: left 750ms;
+}
+
+/**************
+    Settings
+***************/
+
+#settings {
+  .option{
+    > .btn {
+      display: block;
+      margin-bottom: .25em;
+    }
+  }
+}
+
+/***************
+    History
+****************/
+
+#history{
+  a.btn {
+    display: block;
+    width: 100%;
+    margin-bottom: 1em;
+  }
+}
+
+#edit-history{
+  .data {
+    h1{
+      border: 0;
+      padding-top: .5em;
+      text-transform: capitalize;
+    }
+    h3{
+      text-transform: capitalize;
+    }
+  }
+}
+
+/***************
+    Classes
+****************/
+
+.alert{
+  margin: 1em;
+}
+
+.title {
+  margin-bottom: .5em;
+  padding-bottom: .5em;
+  border-bottom: 1px solid #ddd;
+}
+
+section {
+  > h1, > h2, > h3 {
+    margin-bottom: 1em;
+  }
+}
+
+.home-component {
+	h1 {
+		margin: .5em 0;
+	}
+	.jumbotron {
+		background-color: $white;
+	}
+	.logo {
+		text-align: center;
+		border-bottom: 1px solid $divider-color;
+		> img {
+			max-width: 70%;
+			height: auto;
+			border-radius: 40px;
+			border-color: $white;
+		}
+	}
+}
+
+.goal-container {
+	font-family : 'Helvetica Neue', Helvetica, sans-serif;
+	.goal-actions {
+		margin: .5em 0;
+	}
+}
+
