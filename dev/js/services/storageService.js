@@ -10,13 +10,16 @@ var StorageService = (function(){
         var Storage = {};
         Storage.db = null;
 
-        Storage.setupDatabase = function(){
+        Storage.setupDatabase = function(forceCreation){
             this.db = this.getConnection();
 
+            if(forceCreation) {
+                this.dropTables();
+            }
             this.db.transaction(function(tx){
-                tx.executeSql('CREATE TABLE IF NOT EXISTS bench (id INTEGER PRIMARY KEY, recorded long, reps, weight)');
-                tx.executeSql('CREATE TABLE IF NOT EXISTS squat (id INTEGER PRIMARY KEY, recorded long, reps, weight)');
-                tx.executeSql('CREATE TABLE IF NOT EXISTS deadlift (id INTEGER PRIMARY KEY, recorded long, reps, weight)');
+                tx.executeSql('CREATE TABLE IF NOT EXISTS bench (id INTEGER PRIMARY KEY, recorded long, reps, weight, max)');
+                tx.executeSql('CREATE TABLE IF NOT EXISTS squat (id INTEGER PRIMARY KEY, recorded long, reps, weight, max)');
+                tx.executeSql('CREATE TABLE IF NOT EXISTS deadlift (id INTEGER PRIMARY KEY, recorded long, reps, weight, max)');
             });
         };
 
@@ -33,7 +36,8 @@ var StorageService = (function(){
             this.db.transaction(function(tx){
                 $log.info("Adding entry into " + table);
                 $log.debug(obj.date.getTime());
-                tx.executeSql('INSERT INTO ' + table + '(recorded, reps, weight) VALUES (?,?,?)', [obj.date.getTime(), obj.reps, obj.weight]);
+                tx.executeSql('INSERT INTO ' + table + '(recorded, reps, weight, max) VALUES (?,?,?,?)',
+	                [obj.date.getTime(), obj.reps, obj.weight, obj.max]);
                 //tx.executeSql('INSERT INTO bench(recorded, reps, weight) VALUES ('+obj.date.getTime()+', 2, 3)');
             });
         };

@@ -5,7 +5,7 @@
         $scope.exercise = null;
         $scope.animationClass = 'lightSpeedIn';
 
-        Storage.setupDatabase();
+        Storage.setupDatabase(true);
 
         $scope.setExercise = function(exercise){
             $scope.exercise = exercise;
@@ -23,7 +23,8 @@
             var table = exercise === 'bench press' ? 'bench' : exercise === 'squat' ? 'squat' : 'deadlift';
 
             try {
-                Storage.addExercise(table, {reps: $scope.reps, weight: $scope.weight, date : new Date()});
+	            var max = brzycki($scope.weight, $scope.reps);
+                Storage.addExercise(table, {reps: $scope.reps, weight: $scope.weight, date : new Date(), max : max});
                 $scope.message = 'Nice! Your data has been saved!';
 
                 $scope.reset();

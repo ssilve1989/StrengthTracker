@@ -37,7 +37,7 @@
         $scope.populateCharts = function(table, chartElement){
             var db = $scope.db;
             db.transaction(function(tx){
-                var statement = 'SELECT reps, weight, recorded from ' + table + ' ORDER BY recorded ASC';
+                var statement = 'SELECT max, recorded from ' + table + ' ORDER BY recorded ASC';
                 tx.executeSql(statement, [], function(tx, results){
                     var length = results.rows.length;
                     $log.debug('Retrieved ' + length + ' results for query');
@@ -45,11 +45,10 @@
                     var maxes = [], dates = [];
 
                     for(var i = 0; i < length; i++){
-                        var weight = results.rows.item(i).weight;
-                        var reps = results.rows.item(i).reps;
+                        var max = results.rows.item(i).max;
                         var date = results.rows.item(i).recorded;
 
-                        maxes.push(brzycki(weight, reps));
+                        maxes.push(max);
                         dates.push(moment(date).format('MM/DD/YY'));
                     }
 
