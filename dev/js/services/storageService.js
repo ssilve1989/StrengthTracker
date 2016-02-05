@@ -37,7 +37,6 @@ var StorageService = (function(){
                 $log.debug(obj.date.getTime());
                 tx.executeSql('INSERT INTO ' + table + '(recorded, reps, weight, max) VALUES (?,?,?,?)',
 	                [obj.date.getTime(), obj.reps, obj.weight, obj.max]);
-                //tx.executeSql('INSERT INTO bench(recorded, reps, weight) VALUES ('+obj.date.getTime()+', 2, 3)');
             });
         };
 
@@ -52,11 +51,10 @@ var StorageService = (function(){
         //For executing custom queries
         Storage.getConnection = function(){
             if(!this.db){
-                this.db = openDatabase('strengthTracker', '1.0', 'Test DB', 2 * 1024 * 1024);
+                this.db = openDatabase('strengthTracker', '1.0', 'StrengthTracker DB', 2 * 1024 * 1024);
             }
             return this.db;
         };
-
         return Storage;
     }]);
 

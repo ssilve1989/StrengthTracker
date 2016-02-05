@@ -35,7 +35,7 @@
 </head>
 <body>
 
-    <!-- splash loading screen
+    <!-- splash loading screen -->
     <div class="m-app-loading animated" ng-animate-children>
         <style>
             /*using style blocks so that it is removed when the splash is removed*/
@@ -77,7 +77,7 @@
                 margin: 0px 0px 0px 0px ;
             }
         </style>
-        <!-- animated container
+        <!-- animated container -->
         <div class="animated-container">
             <div class="messaging">
                 <h1>Strength Tracker</h1>
@@ -85,7 +85,7 @@
                 <p><em>Loading...</em></p>
             </div>
         </div>
-        <!--end animated container
+        <!--end animated container -->
     </div>
     <!--end splash loading screen -->
 
@@ -112,19 +112,10 @@
             </div>
         </div>
     </header>
-    <main id="main" class="container">
+    <main id="main" class="container" ng-cloak>
         <div ng-view></div>
     </main>
-    <!--
-    <footer class="container-fluid text-center navbar-fixed-bottom">
-        <small>&copy;
-            <script>
-                document.write(new Date().getFullYear().toString())
-            </script>
-            Steven Silvestri
-        </small>
-    </footer>
-    -->
+
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
 
@@ -157,20 +148,14 @@
             var body = document.querySelector('body');
 
             if (window.cordova) {
-                console.log("Running in Cordova, will bootstrap AngularJS once 'deviceready' event fires.");
+                console.debug("Running in Cordova, will bootstrap AngularJS once 'deviceready' event fires.");
                 document.addEventListener('deviceready', function () {
                     console.log("Deviceready event has fired, bootstrapping AngularJS.");
-                    angular.bootstrap(body, ['StrengthTracker']).invoke(['Storage', function(Storage){
-                        // initialize the DB
-                        Storage.setupDatabase();
-                    }]);
+                    angular.bootstrap(body, ['StrengthTracker']);
                 }, false);
             } else {
-                console.log("Running in browser, bootstrapping AngularJS now.");
-                angular.bootstrap(body, ['StrengthTracker']).invoke(['Storage', function(Storage){
-                    // initialize the DB
-                    Storage.setupDatabase();
-                }]);
+                console.debug("Running in browser, bootstrapping AngularJS now.");
+                angular.bootstrap(body, ['StrengthTracker']);
             }
         });
     </script>

@@ -45,13 +45,14 @@ gulp.task('minify', function(){
             css : [minifyCSS(), 'concat', rev()],
             js : [uglify(), rev()],
             js2 : [uglify(), rev()],
-            html : [minifyHTML({empty:true})],
+            html : [minifyHTML({empty:true})]
         })).pipe(gulp.dest(config.dest));
 });
 
 gulp.task('copy', function(){
     gulp.src(config.src + "views/*").pipe(gulp.dest(config.dest + "views"));
     gulp.src(config.src + 'bower_components/font-awesome/fonts/**/*').pipe(gulp.dest(config.dest + 'fonts/'));
+    gulp.src(config.src + 'img/**/*').pipe(gulp.dest(config.dest + 'img/'));
     return gulp.src(config.src + 'js/index.js')
         .pipe(gulp.dest(config.dest + 'js'))
 });

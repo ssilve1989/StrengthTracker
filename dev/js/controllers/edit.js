@@ -93,13 +93,13 @@
             var id = $scope.selected.id;
             var reps = $scope.selected.reps = form.reps.$modelValue;
             var weight = $scope.selected.weight = form.weight.$modelValue;
-
+            var max = brzycki(weight, reps);
             //Update the Database
             var db = $scope.db;
 
             db.transaction(function(tx){
-                var statement = 'UPDATE ' + table + ' SET reps=?, weight=? WHERE id=?';
-                tx.executeSql(statement, [reps, weight, id], function(tx, results){
+                var statement = 'UPDATE ' + table + ' SET reps=?, weight=?, max=? WHERE id=?';
+                tx.executeSql(statement, [reps, weight, max, id], function(tx, results){
                     if(results.rowsAffected === 1){
                         $uibModalInstance.close();
                     }

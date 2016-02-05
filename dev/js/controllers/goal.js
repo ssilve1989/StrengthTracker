@@ -4,6 +4,8 @@
 		$scope.localStorage = window.localStorage;
 		$scope.db = Storage.getConnection();
 
+		Storage.setupDatabase();
+
 		$scope.lifts = {};
 
 		$scope.init = function() {
@@ -70,10 +72,14 @@
 			});
 		};
 
-		$scope.$on('$routeChangeSuccess', function(){
+		if(window.appStart){
 			$scope.init();
-		});
-
+		}else{
+			$timeout(function(){
+				$scope.init();
+				window.appStart = true;
+			}, 2100);
+		}
 	}]);
 
 	// TODO: Refactor this into a Drawing class with ES6

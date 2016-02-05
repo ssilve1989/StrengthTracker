@@ -8,6 +8,7 @@
 
         $scope.clearDatabase = function(){
             Storage.dropTables();
+            window.localStorage.clear();
             $scope.message = 'Database has been cleared!';
 
             $timeout(function(){

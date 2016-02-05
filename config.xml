@@ -21,9 +21,16 @@
         <icon src="res/mipmap-hdpi/ic_launcher.png" density="hdpi"/>
         <icon src="res/mipmap-mdpi/ic_launcher.png" density="mdpi"/>
         <icon src="res/mipmap-xhdpi/ic_launcher.png" density="xhdpi"/>
+        <splash src="res/mipmap-mdpi/ic_launcher.png" density="port-mdpi"/>
+        <splash src="res/mipmap-hdpi/ic_launcher.png" density="port-hdpi" />
+        <splash src="res/mipmap-xhdpi/ic_launcher.png" density="port-xhdpi" />
+        <splash src="res/mipmap-xxhdpi/ic_launcher.png" density="port-xxhdpi" />
+        <splash src="res/mipmap-xxxhdpi/ic_launcher.png" density="port-xxxhdpi" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
+    <preference name="SplashScreen" value="screen"/>
+    <preference name="SplashScreenDelay" value="3000" />
 </widget>
