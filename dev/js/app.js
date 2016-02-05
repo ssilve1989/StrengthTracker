@@ -27,14 +27,14 @@ var angularApp = (function(angular){
                 controller : 'editCtrl'
             })
             .when('/test', {
-	            templateUrl : 'views/_main.html',
+	            templateUrl : 'views/goals.html',
 	            controller : 'GoalCtrl'
             })
             .otherwise({
                 redirectTo: '/'
             });
 
-        $logProvider.debugEnabled(false);
+        $logProvider.debugEnabled(true);
     }]);
 
     return angularApp;

@@ -27,7 +27,6 @@ var StorageService = (function(){
             return !!this.db;
         };
 
-
         Storage.addExercise = function(table, obj){
             if(!this.db){
                 console.error('The database has not been opened.');

@@ -4,10 +4,13 @@
 @import 'partials/buttons';
 @import 'partials/bootstrap_overrides';
 @import 'partials/ng_styles';
+@import "partials/form-validation";
 //Modules
 @import 'modules/header';
 @import 'modules/exercises';
 @import 'modules/charts';
+@import 'modules/progress';
+
 
 body{
   font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -38,7 +41,6 @@ body{
   left: 0;
   -webkit-transition: left 750ms;
   -moz-transition: left 750ms;
-  -ms-transition: left 750ms;
   -o-transition: left 750ms;
   transition: left 750ms;
 }
@@ -99,5 +101,28 @@ section {
   > h1, > h2, > h3 {
     margin-bottom: 1em;
   }
+}
+
+.home-component {
+	h1 {
+		margin: .5em 0;
+	}
+	.jumbotron {
+		background-color: $white;
+	}
+	.logo {
+		text-align: center;
+		border-bottom: 1px solid $divider-color;
+		> img {
+			max-width: 70%;
+			height: auto;
+			border-radius: 40px;
+			border-color: $white;
+		}
+	}
+}
+
+.goal-container {
+	font-family : 'Helvetica Neue', Helvetica, sans-serif;
 }
 

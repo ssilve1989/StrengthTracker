@@ -1,0 +1,26 @@
+<section class="home-component">
+    <figure class="logo">
+        <img src="/img/icon.png" alt="Strength Tracker Logo">
+    </figure>
+    <div class="goal-container container text-center">
+        <h1>Progress</h1>
+        <div class="row">
+            <div class="col-xs-12 col-md-4">
+                <div ng-repeat="lift in lifts">
+                    <!-- progress indicator -->
+                    <div class="progress-canvas-container">
+                        <canvas id="{{ lift.canvas }}" class="progress-canvas" height="375" width="768"></canvas>
+                        <p>You have a potential max of {{ lift.current }} lbs towards your goal of {{ lift.goal }} lbs</p>
+                    </div>
+
+                    <!-- gaol actions -->
+                    <div class="goal-actions">
+                        <button class="btn btn-pastel-blue btn-block">
+                            {{ lift.goal == 0 ? 'Update Goal' : 'Set Goal' }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
