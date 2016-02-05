@@ -10,14 +10,29 @@
                     <!-- progress indicator -->
                     <div class="progress-canvas-container">
                         <canvas id="{{ lift.canvas }}" class="progress-canvas" height="375" width="768"></canvas>
-                        <p>You have a potential max of {{ lift.current }} lbs towards your goal of {{ lift.goal }} lbs</p>
+                        <p ng-show="lift.goal != 0 && lift.current != 0">You have a potential max of {{ lift.current }} lbs towards your goal of {{ lift.goal }} lbs</p>
+                        <p ng-show="lift.goal == 0">You have no goal set for <span style="text-transform: capitalize">{{ lift.name }}</span></p>
+                        <p ng-show="lift.current == 0">You have no data entered for this lift yet!</p>
                     </div>
 
                     <!-- gaol actions -->
                     <div class="goal-actions">
-                        <button class="btn btn-pastel-blue btn-block">
-                            {{ lift.goal == 0 ? 'Update Goal' : 'Set Goal' }}
+                        <button ng-hide="lift.updating && lift.current != 0" class="btn btn-pastel-blue btn-block" ng-click="lift.updating = true">
+                            {{ lift.goal == 0 ? 'Set Goal' : 'Update Goal' }}
                         </button>
+                        <div ng-show="lift.updating">
+                            <form name="form" ng-submit="setGoal($event, lift)" novalidate>
+                                <div class="form-group">
+                                    <input name="goal" ng-model="temp" type="number" class="form-control" min="1" placeholder="Goal"
+                                           pattern="^[0-9]+$" value="{{ lift.goal }}" required >
+                                    <div class="alert alert-danger" ng-show="(form.goal.$dirty || form.goal.$touched) && form.goal.$invalid">
+                                        <strong>Error!: </strong>Must be a positive whole number
+                                    </div>
+                                </div>
+                                <input type="submit" class="btn btn-pastel-blue" value="Set Goal">
+                                <button type="button" class="btn btn-default" ng-click="lift.updating = false">Cancel</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

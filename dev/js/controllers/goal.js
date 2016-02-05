@@ -16,6 +16,25 @@
 			return Number($scope.localStorage.getItem(lift));
 		};
 
+		$scope.setGoal = function($event, lift) {
+			var form = $event.target;
+			var goal = form[0].value; // 0 is the goal input, there is only one input.
+
+			lift.goal = goal;
+
+			// redraw canvas, save to LocalStorage and update the state
+			$scope.redraw(lift);
+			$scope.localStorage.setItem(lift.name, goal);
+			lift.updating = false;
+		};
+
+		$scope.redraw = function(lift) {
+			var canvas = document.getElementById(lift.canvas);
+			var ctx = canvas.getContext('2d');
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			setupCanvas(lift);
+		};
+
 		$scope.loadData = function(type) {
 			var db = $scope.db;
 
@@ -26,7 +45,6 @@
 					function(tx, results){
 						var goal = $scope.getGoal(type);
 
-						var obj = {};
 						lifts[type] = {
 							canvas : (type + '-canvas'),
 							name : type
@@ -58,6 +76,7 @@
 
 	}]);
 
+	// TODO: Refactor this into a Drawing class with ES6
 	var colors = {
 		danger : '#d9534f',
 		warning : '#f0ad4e',
@@ -68,9 +87,11 @@
 	// Drawing functions
 	function setupCanvas(lift) {
 		console.log('Setting up canvas with:', lift);
-		var canvas = document.querySelector('#' + lift.canvas);
+		var canvas = document.getElementById(lift.canvas);
 		var ctx = canvas.getContext('2d');
 		var max = Math.round( (lift.current / lift.goal) * 100 );
+
+		if(isNaN(max)) max = 0;
 
 		var liftName = lift.name.charAt(0).toUpperCase() + lift.name.substring(1);
 
@@ -91,7 +112,7 @@
 	function animateCircle(ctx, step, text) {
 		setTimeout(function(){
 			draw(ctx, step * .01, text);
-		}.bind(this), step * 20);
+		}, step * 20);
 	}
 
 	function draw(ctx, current, text) {

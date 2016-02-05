@@ -1,7 +1,7 @@
 (function(angularApp){
     "use strict";
 
-    angularApp.controller('mainCtrl', ['$scope', 'Storage', function($scope, Storage){
+    angularApp.controller('RecordCtrl', ['$scope', 'Storage', function($scope, Storage){
         $scope.exercise = null;
         $scope.animationClass = 'lightSpeedIn';
 

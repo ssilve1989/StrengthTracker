@@ -8,9 +8,13 @@ var angularApp = (function(angular){
     angularApp.config(['$routeProvider', '$logProvider', function($routeProvider, $logProvider){
         $routeProvider
             .when('/', {
-                templateUrl: 'views/main.html',
-                controller : 'mainCtrl'
+                templateUrl: 'views/goals.html',
+                controller : 'GoalCtrl'
             })
+	        .when('/record', {
+		        templateUrl : 'views/record-data.html',
+		        controller : 'RecordCtrl'
+	        })
             .when('/history', {
                 templateUrl : 'views/history.html',
                 controller : 'historyCtrl'
